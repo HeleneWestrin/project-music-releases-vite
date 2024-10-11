@@ -2,7 +2,13 @@ import { useState } from "react";
 import { AlbumControls } from "./AlbumControls";
 import { ArtistItem } from "./ArtistItem";
 
-export const AlbumItem = ({ image, albumName, albumUrl, artists }) => {
+export const AlbumItem = ({
+  image,
+  albumName,
+  albumType,
+  albumUrl,
+  artists,
+}) => {
   const [hovered, setHovered] = useState(false);
   const [focused, setFocused] = useState(false);
 
@@ -18,23 +24,40 @@ export const AlbumItem = ({ image, albumName, albumUrl, artists }) => {
       onBlur={() => setFocused(false)}
     >
       <div className="album__cover">
-        <img className="album__image" src={image} alt="" />
-        <AlbumControls className={showControls ? "is-visible" : ""} />
+        <img
+          className="album__image"
+          width="250"
+          height="250"
+          src={image}
+          alt=""
+        />
+        <AlbumControls
+          albumName={albumName}
+          className={showControls ? "is-visible" : ""}
+        />
       </div>
       <div className="album__info">
-        <h2 className="album__name">
-          <a href={albumUrl} className="album__link">
-            {albumName}
+        <h3 className="album__name">
+          <a
+            href={albumUrl}
+            className="album__link"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <span className="sr-only">{albumType} name:</span> {albumName}
           </a>
-        </h2>
-        {artists.map((artist, index) => (
-          <ArtistItem
-            key={artist.id}
-            name={artist.name}
-            url={artist.external_urls.spotify}
-            isLast={index === artists.length - 1}
-          />
-        ))}
+        </h3>
+        <p className="album__artists">
+          {artists.map((artist, index) => (
+            <ArtistItem
+              key={artist.id}
+              name={artist.name}
+              url={artist.external_urls.spotify}
+              isNextToLast={index === artists.length - 2}
+              isLast={index === artists.length - 1}
+            />
+          ))}
+        </p>
       </div>
     </article>
   );

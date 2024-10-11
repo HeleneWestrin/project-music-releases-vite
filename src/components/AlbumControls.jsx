@@ -2,12 +2,21 @@ import { PlayButton } from "./PlayButton";
 import { FavoriteButton } from "./FavoriteButton";
 import { MenuButton } from "./MenuButton";
 
-export const AlbumControls = ({ className }) => {
+export const AlbumControls = ({ albumName, className }) => {
   return (
-    <nav className={`album__controls ${className}`} aria-label="Album controls">
-      <FavoriteButton />
-      <PlayButton />
-      <MenuButton />
-    </nav>
+    <ul
+      className={`album__controls ${className}`}
+      aria-label={`Controls for album ${albumName}`}
+    >
+      <li>
+        <FavoriteButton />
+      </li>
+      <li>
+        <PlayButton />
+      </li>
+      <li>
+        <MenuButton />
+      </li>
+    </ul>
   );
 };
