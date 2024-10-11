@@ -52,6 +52,7 @@ export const AlbumItem = ({
             <ArtistItem
               key={artist.id}
               name={artist.name}
+              type={artist.type}
               url={artist.external_urls.spotify}
               isNextToLast={index === artists.length - 2}
               isLast={index === artists.length - 1}

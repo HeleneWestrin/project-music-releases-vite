@@ -6,7 +6,7 @@
 
   --white: #fff;
   --gray: #a0a0a0;
-  --black: #181818;
+  --black: #121212;
   --true-black: #000;
   --spotify-brand: #1ed760;
 }
@@ -34,7 +34,11 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 0 2rem;
+  padding: 0 1rem;
+
+  @media (min-width: 768px) {
+    padding: 0 2rem;
+  }
 }
 
 .grid-container {
@@ -119,14 +123,27 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 30vh;
   width: 100%;
-  background-color: var(--spotify-brand);
+  background-color: var(--true-black);
   border-radius: 0.5rem;
   margin: 2rem 0;
 
+  @media (min-width: 768px) {
+    min-height: 20vh;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin: 0 0 0.25rem;
+
+    @media (min-width: 768px) {
+      font-size: 3rem;
+    }
+  }
+
   * {
-    color: var(--true-black);
+    color: var(--spotify-brand);
   }
 }
 
@@ -201,7 +218,16 @@ main {
 .album-list__container {
   display: flex;
   flex-direction: column;
-  gap: 2.5rem;
+  gap: 1.5rem;
+
+  background-color: var(--black);
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+
+  @media (min-width: 768px) {
+    gap: 2.5rem;
+    padding: 2rem;
+  }
 }
 
 .album__list {
@@ -239,7 +265,6 @@ main {
 
 .album__cover {
   position: relative;
-  background-color: var(--black);
 }
 
 .album__controls {
@@ -270,6 +295,7 @@ main {
 .album__image {
   width: 100%;
   height: auto;
+  background-color: var(--true-black);
 }
 
 .album__link,
