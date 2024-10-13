@@ -15,6 +15,8 @@ export const AlbumItem = ({
   // Combined state to determine when AlbumControls should be shown
   const showControls = hovered || focused;
 
+  const placeholderImage = "./placeholder-image.jpg"; // Path to your placeholder image
+
   return (
     <article
       className="album__item"
@@ -28,7 +30,7 @@ export const AlbumItem = ({
           className="album__image"
           width="250"
           height="250"
-          src={image}
+          src={image || placeholderImage}
           alt=""
         />
         <AlbumControls
@@ -39,25 +41,30 @@ export const AlbumItem = ({
       <div className="album__info">
         <h3 className="album__name">
           <a
-            href={albumUrl}
+            href={albumUrl || "#"}
             className="album__link"
             target="_blank"
             rel="noreferrer"
           >
-            <span className="sr-only">{albumType} name:</span> {albumName}
+            <span className="sr-only">{albumType || "Album"} name:</span>{" "}
+            {albumName || "Unknown album"}
           </a>
         </h3>
         <p className="album__artists">
-          {artists.map((artist, index) => (
-            <ArtistItem
-              key={artist.id}
-              name={artist.name}
-              type={artist.type}
-              url={artist.external_urls.spotify}
-              isNextToLast={index === artists.length - 2}
-              isLast={index === artists.length - 1}
-            />
-          ))}
+          {artists && artists.length > 0 ? (
+            artists.map((artist, index) => (
+              <ArtistItem
+                key={artist.id}
+                name={artist.name}
+                type={artist.type}
+                url={artist.external_urls.spotify}
+                isNextToLast={index === artists.length - 2}
+                isLast={index === artists.length - 1}
+              />
+            ))
+          ) : (
+            <span>Unknown artists</span>
+          )}
         </p>
       </div>
     </article>
